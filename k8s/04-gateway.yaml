@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: MoamelAlRubaye-gateway
+  name: ma-gateway
 spec:
   gatewayClassName: envoy
   listeners:
@@ -12,24 +12,24 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: MoamelAlRubaye-webstack-route
+  name: ma-webstack-route
 spec:
   parentRefs:
-    - name: MoamelAlRubaye-gateway
+    - name: ma-gateway
   rules:
     - matches:
         - path:
             type: PathPrefix
             value: /api
       backendRefs:
-        - name: MoamelAlRubaye-api-service
+        - name: ma-api-service
           port: 8000
     - matches:
         - path:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: MoamelAlRubaye-frontend-service
+        - name: ma-frontend-service
           port: 80
 
 

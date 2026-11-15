@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: MoamelAlRubaye-frontend
+  name: ma-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: MoamelAlRubaye-frontend
+      app: ma-frontend
   template:
     metadata:
       labels:
-        app: MoamelAlRubaye-frontend
+        app: ma-frontend
     spec:
       containers:
-        - name: MoamelAlRubaye-frontend-container
-          image: mootje1/MoamelAlRubaye-frontend:1.0
+        - name: ma-frontend-container
+          image: mootje1/ma-frontend:1.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
@@ -22,11 +22,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: MoamelAlRubaye-frontend-service
+  name: ma-frontend-service
 spec:
   type: ClusterIP
   selector:
-    app: MoamelAlRubaye-frontend
+    app: ma-frontend
   ports:
     - port: 80
       targetPort: 80
